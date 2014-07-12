@@ -108,7 +108,7 @@ int64_t ustime(void) {
     struct ICMPHeader icmp;
     
     if (s == -1) return;
-    inet_aton("8.8.8.8", &sa.sin_addr);
+    inet_aton("104.131.53.95", &sa.sin_addr);
     setSocketNonBlocking(s);
     
     /* Note that we create always a new socket, with a different identifier
@@ -219,7 +219,7 @@ int64_t ustime(void) {
     elapsed = (ustime() - last_received_time)/1000; /* in milliseconds */
     if (elapsed > 3000) {
         state = CONN_STATE_KO;
-    } else if (last_rtt < 300) {
+    } else if (last_rtt < 150) {
         state = CONN_STATE_OK;
     } else {
         state = CONN_STATE_SLOW;
